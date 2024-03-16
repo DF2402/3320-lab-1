@@ -1,8 +1,11 @@
-class Circle extends Shape{
+
+import java.util.Scanner;
+
+class Circle extends Shape implements Drawable{
     private float radius ; 
     
     public Circle(){
-        
+        this(0);
     };
     
     
@@ -12,7 +15,11 @@ class Circle extends Shape{
     
     // To read the shape information from users
     public void readShape(){
-       
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input the radius: ");
+        float input = scanner.nextFloat();
+        this.radius = input;
+        scanner.close();
    };
    
    // To compute the shape’s area
@@ -31,4 +38,13 @@ class Circle extends Shape{
        System.out.println(" Perimeter of circle = "+this.perimeter);
    };
    
+   public void draw() {
+        float x = 100;
+        float y = 100;
+        Canvas canvas = Canvas.getCanvas();
+        java.awt.Shape circle = new java.awt.geom.Ellipse2D.Float(x - radius, y - radius, radius*2, radius*2);
+        Object referenceObject = this;
+        canvas.draw(referenceObject, "blue", circle);
+    }
+    
 }

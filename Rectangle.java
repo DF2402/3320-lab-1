@@ -1,9 +1,12 @@
-class Rectangle extends Shape{
+
+import java.util.Scanner;
+
+class Rectangle extends Shape implements Drawable{
     private float length; 
     private float width; 
     
-    public Rectangle(){
-        
+    public Rectangle() {
+        this(0,0);
     };
     
     
@@ -14,6 +17,14 @@ class Rectangle extends Shape{
     
     // To read the shape information from users
     public void readShape(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input the length: ");
+        float input = scanner.nextFloat();
+        this.length = input;
+        System.out.println("Please input the width: ");
+        input = scanner.nextFloat();
+        this.width = input;
+        scanner.close();
        
    };
    
@@ -33,4 +44,12 @@ class Rectangle extends Shape{
        System.out.println(" Perimeter of rectangle = "+this.perimeter);
    };
    
+   public void draw() {
+        float x = 100;
+        float y = 100;
+        Canvas canvas = Canvas.getCanvas();
+        java.awt.Shape rectangle = new java.awt.geom.Rectangle2D.Float(x, y, length, width);
+        Object referenceObject = this;
+        canvas.draw(referenceObject, "red", rectangle);
+    }
 }

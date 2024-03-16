@@ -1,4 +1,4 @@
-abstract class Shape{
+abstract class Shape implements Drawable{
     float area;
     float perimeter;
     
